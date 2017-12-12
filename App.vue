@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <v-header></v-header>
-    <div class="tab">
+    <v-header :seller="seller"></v-header>
+    <div class="tab border-1px">
       <div class="tab-item">
         <router-link to='/goods'>商品</router-link>
       </div>
@@ -18,8 +18,23 @@
 
 <script>
   import header from './components/header/header';
-
+  import axios from 'axios';
+  const ERR_OK = 0;
   export default {
+    data () {
+      return {
+        seller: {}
+      };
+    },
+    mounted () {
+      axios.get('/api/seller').then(res => {
+        res = res.data;
+        if (res.errno === ERR_OK) {
+          this.seller = res.data;
+          console.log(this.seller);
+        }
+      });
+    },
     components: {
       'v-header': header
     }
