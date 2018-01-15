@@ -35,5 +35,5 @@
     &.invoice
       bg-image('invoice_3')
     &.special
-      bg-image('special_3')
+      doubg-image('special_3')
 </style>
